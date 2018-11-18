@@ -1,0 +1,5 @@
+package com.tanveershafeeprottoy.basedatabindingcomponents.viewholders
+
+import androidx.databinding.ViewDataBinding
+
+class BaseSpinnerAdapterViewHolder(val viewDataBinding: ViewDataBinding)
