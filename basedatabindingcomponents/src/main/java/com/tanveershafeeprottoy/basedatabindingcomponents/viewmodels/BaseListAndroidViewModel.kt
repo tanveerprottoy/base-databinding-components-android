@@ -6,5 +6,5 @@ abstract class BaseListAndroidViewModel<T>(application: Application) : BaseAndro
 
     abstract fun getAll()
 
-    abstract fun onNext(obj: T)
+    abstract fun onLoad(obj: T)
 }
