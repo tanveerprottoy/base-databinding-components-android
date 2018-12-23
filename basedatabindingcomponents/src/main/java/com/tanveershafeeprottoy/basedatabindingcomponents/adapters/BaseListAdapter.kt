@@ -7,8 +7,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.tanveershafeeprottoy.basedatabindingcomponents.listeners.ListItemOnClickListener
 import com.tanveershafeeprottoy.basedatabindingcomponents.viewholders.BaseRecyclerViewHolder
 
-open class BaseListAdapter(private val resourceId: Int, private val variableId: Int, private val listItemOnClickListener: ListItemOnClickListener?) : RecyclerView.Adapter<BaseRecyclerViewHolder>() {
-    private var anyList: MutableList<Any>? = null
+open class BaseListAdapter<T>(private val resourceId: Int, private val variableId: Int,
+                              private val listItemOnClickListener:
+                              ListItemOnClickListener?) : RecyclerView.Adapter<BaseRecyclerViewHolder>() {
+    private var objList: MutableList<T>? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseRecyclerViewHolder {
         return BaseRecyclerViewHolder(DataBindingUtil.inflate(LayoutInflater.from(parent.context), resourceId, parent, false), variableId, listItemOnClickListener)
@@ -16,7 +18,7 @@ open class BaseListAdapter(private val resourceId: Int, private val variableId: 
 
     override fun onBindViewHolder(holder: BaseRecyclerViewHolder, position: Int) {
         try {
-            holder.bind(anyList!![position])
+            holder.bind(objList!![position])
         }
         catch(e: Exception) {
 
@@ -25,15 +27,15 @@ open class BaseListAdapter(private val resourceId: Int, private val variableId: 
 
     override fun getItemCount(): Int {
         return try {
-            anyList!!.size
+            objList!!.size
         }
         catch(n: NullPointerException) {
             0
         }
     }
 
-    fun setData(anyList: MutableList<Any>?) {
-        this.anyList = anyList
+    fun setData(objList: MutableList<T>?) {
+        this.objList = objList
         notifyDataSetChanged()
     }
 }

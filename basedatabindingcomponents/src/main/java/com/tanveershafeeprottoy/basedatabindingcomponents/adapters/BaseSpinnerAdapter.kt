@@ -9,7 +9,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import com.tanveershafeeprottoy.basedatabindingcomponents.viewholders.BaseSpinnerAdapterViewHolder
 
-class BaseSpinnerAdapter(context: Context, private val resourceId: Int, textViewId: Int, private val variableId: Int, private val anyList: List<Any>) : ArrayAdapter<Any>(context, resourceId, textViewId, anyList) {
+class BaseSpinnerAdapter<T>(context: Context, private val resourceId: Int, textViewId: Int,
+                            private val variableId: Int,
+                            private val objList: List<T>) : ArrayAdapter<Any>(context, resourceId, textViewId, objList) {
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         return getRowView(position, convertView, parent)
@@ -21,7 +23,7 @@ class BaseSpinnerAdapter(context: Context, private val resourceId: Int, textView
 
     override fun getCount(): Int {
         return try {
-            anyList.size
+            objList.size
         }
         catch(n: NullPointerException) {
             0
@@ -40,7 +42,7 @@ class BaseSpinnerAdapter(context: Context, private val resourceId: Int, textView
         else {
             baseSpinnerAdapterViewHolder = rowView.tag as BaseSpinnerAdapterViewHolder
         }
-        baseSpinnerAdapterViewHolder.viewDataBinding.setVariable(variableId, anyList[position])
+        baseSpinnerAdapterViewHolder.viewDataBinding.setVariable(variableId, objList[position])
         return rowView
     }
 }
