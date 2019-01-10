@@ -7,5 +7,5 @@ import androidx.databinding.ObservableBoolean;
  * Created by Tanveer Shafee Prottoy on 12/25/18.
  */
 public class BaseValidatableObservable extends BaseObservable {
-    ObservableBoolean isValidInput = new ObservableBoolean(false);
+    protected ObservableBoolean isValidInput = new ObservableBoolean(false);
 }
